@@ -99,15 +99,22 @@ window.addEventListener("click", (e) => {
             }
             else {
                 switch(ui.mode_actif) {
-                    case 4:
+                    /* case 4:
                         if (cellule_cliquee.type_entite == 3) {    // on a cliqué sur le contour d'un polygone
                             let entite = grille.entites[cellule_cliquee.type_entite][cellule_cliquee.id_entite];
                             entite.remplissage = ui.clr_remp;
                             grille.remplir_polygone(entite);
                         }
-                    break;
-                    case 6:
+                    break; */
+                    case 6: // en mode sélection
                         console.log(cellule_cliquee);
+                        if (cellule_cliquee.type_entite != undefined) {
+                            let entite = grille.entites[cellule_cliquee.type_entite][cellule_cliquee.id_entite];
+                            grille.selectionner_entite(cellule_cliquee.type_entite, cellule_cliquee.id_entite);
+                            let param = ui.identifiant_entite(entite);
+                            let lib = param[0];
+                            ui.listeEntites.value = lib;
+                        }
                     break;
                 }
             }

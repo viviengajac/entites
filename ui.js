@@ -56,7 +56,7 @@ export class UI {
                 grille.remplir_polygone(grille.selection);
             }
         }
-        if (val == 6) {
+        if (val == 6) { // on vient de passer en mode sélection et on veut que l'entité sélectionnée dans la combo soit 
             if (this.listeEntites.childElementCount == 0) return;
             let param = this.recup_entite_dans_liste();
             let type = param[0];
@@ -79,6 +79,39 @@ export class UI {
     maj_boutons_modes(val) {
         this.boutons_modes.forEach(bouton => bouton.classList.remove("btn-actif"));
         this.boutons_modes[val].classList.add("btn-actif");
+    }
+    vider_select() {
+        let dernier_enf = this.listeEntites.lastChild;
+        while (dernier_enf) {
+            this.listeEntites.removeChild(dernier_enf);
+            dernier_enf = this.listeEntites.lastChild;
+        }
+    }
+    selectionner_entite(entite) {   // sert à mettre à jour la combo de liste d'entités après sélection d'une entité en cliquant dans la grille
+
+    }
+    identifiant_entite(entite) {
+        let lib;
+        let id;
+        switch (entite.type) {
+            case 0:
+                lib = `Point #${entite.id}`;
+                id = `pt${entite.id}`;
+            break;
+            case 1:
+                lib = `Ligne #${entite.id}`;
+                id = `li${entite.id}`;
+            break;
+            case 2:
+                lib = `Polyligne #${entite.id}`;
+                id = `pl${entite.id}`;
+            break;
+            case 3:
+                lib = `Polygone #${entite.id}`;
+                id = `pg${entite.id}`;
+            break;
+        }
+        return [lib, id];
     }
     recup_entite_dans_liste() {
         let selection = listeEntites.options[listeEntites.selectedIndex].id;

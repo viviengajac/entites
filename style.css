@@ -103,7 +103,7 @@ select {
     letter-spacing: .05em;
 }
 input[type="number"] {
-    width: 60px;
+    width: 80px;
 }
 /* classes dynamiques */
 .btn-actif {

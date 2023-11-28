@@ -15,6 +15,7 @@ export class Grille {
     }
     initialiser() {
         this.canvas = document.getElementById("canvas");
+        this.canvas.style.background = "#ffffff";
         this.ctx = this.canvas.getContext("2d");
         this.modifier_grille();
         this.changer_couleur();
@@ -27,11 +28,12 @@ export class Grille {
             [],
             [],
         ];
+        ui.vider_select();
     }
     modifier_grille() {
         this.taille_cellules = Number(document.getElementById("tailleCellules").value);
-        this.nb_cellules_x = Number(document.getElementById("largCan").value);
-        this.nb_cellules_y = Number(document.getElementById("hautCan").value);
+        this.nb_cellules_x = Number(document.getElementById("largCan").value) / this.taille_cellules;
+        this.nb_cellules_y = Number(document.getElementById("hautCan").value) / this.taille_cellules;
         this.adapter_canvas();
         this.reset();
         this.generer_cellules();
@@ -85,7 +87,7 @@ export class Grille {
     }
     ajouter_entite_liste(entite) {
         //console.log(entite);
-        let lib;
+        /* let lib;
         let id;
         switch (entite.type) {
             case 0:
@@ -104,7 +106,10 @@ export class Grille {
                 lib = `Polygone #${entite.id}`;
                 id = `pg${entite.id}`;
             break;
-        }
+        } */
+        let param = ui.identifiant_entite(entite);
+        let lib = param[0];
+        let id = param[1];
         let option = document.createElement("option");
         option.setAttribute("id", `${id}`);
         option.textContent = lib;
