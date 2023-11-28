@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+/* header */
+header {
+    background: #ccc;
+}
+header,
+.toolbar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.toolbar {
+    width: auto;
+    min-height: 30px;
+    font-size: .9em;
+    letter-spacing: .05em;
+}
+.toolbar > * {
+    height: 30px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+}
+#barreReglages {
+    border: 2px solid hsl(0, 100%, 85%);
+    background: hsl(0, 100%, 95%);
+}
+#barreReglages > * {
+    background: hsl(0, 100%, 95%);
+}
+#barreEntites {
+    border: 2px solid hsl(72, 100%, 85%);
+}
+#barreEntites > * {
+    background: hsl(72, 100%, 95%);
+}
+#barreCouleurs {
+    border: 2px solid hsl(144, 100%, 85%);
+}
+#barreCouleurs > * {
+    background: hsl(144, 100%, 95%);
+}
+#barreRemplissage {
+    border: 2px solid hsl(216, 100%, 85%);
+}
+#barreRemplissage > * {
+    background: hsl(216, 100%, 95%);
+}
+#barreSelection {
+    border: 2px solid hsl(288, 100%, 85%);
+}
+#barreSelection > * {
+    background: hsl(288, 100%, 95%);
+}
+#listeEntites {
+    width: 150px;
+}
+#coordCellSurv,
+#cellSurv,
+#infosCell > * {
+    width: 100px;
+    background: #fff;
+    border: 2px solid #000;
+    justify-content: center;
+    font-size: .8em;
+}
+#cellSurv {
+    width: 70px;
+}
+/* fin header */
+main {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+    background: #ccc;
+}
+canvas {
+    background: #fff;
+}
+/* regles generales */
+input,
+select {
+    border-radius: 0;
+    letter-spacing: .05em;
+}
+input[type="number"] {
+    width: 60px;
+}
+/* classes dynamiques */
+.btn-actif {
+    border: 2px solid #0c0;
+    background: #9c9 !important;
+}
+.hidden {
+    display: none;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="toolbar" id="barreReglages">
+            <label for="tailleCellule">Cellules:</label>
+            <select name="tailleCellules" id="tailleCellules">
+                <option value="1">1 px</option>
+                <option value="2">2 px</option>
+                <option value="3">3 px</option>
+                <option value="4">4 px</option>
+                <option value="5">5 px</option>
+                <option value="6">6 px</option>
+                <option value="7">7 px</option>
+                <option value="8">8 px</option>
+                <option value="9">9 px</option>
+                <option value="10" selected>10 px</option>
+                <option value="12">12 px</option>
+                <option value="14">14 px</option>
+                <option value="16">16 px</option>
+                <option value="18">18 px</option>
+                <option value="20">20 px</option>
+                <option value="25">25 px</option>
+            </select>
+            <label for="largCan">Largeur:</label>
+            <input type="number" name="largCan" id="largCan" min="1" max="999" value="50">
+            <label for="hautCan">Hauteur:</label>
+            <input type="number" name="hautCan" id="hautCan" min="1" max="999" value="50">
+            <input type="button" onclick="modifier_grille()" value="Valider" id="validCan">
+            <label for="clrCan">Couleur:</label>
+            <input name="clrCan" type="color" value="#ffffff" id="clrCan"">
+        </div>
+
+
+
+        <div class="toolbar" id="barreEntites">
+            <input type="button" onclick="changer_mode(0)" value="Point" class="btn-actif"/>
+            <input type="button" onclick="changer_mode(1)" value="Ligne"/>
+            <input type="button" onclick="changer_mode(2)" value="Polyligne"/>
+            <input type="button" onclick="changer_mode(3)" value="Polygone"/>
+        </div>
+
+        <div class="toolbar" id="barreCouleurs">
+            <label for="clrCont">Couleur:</label>
+            <input name="clrCont" type="color" value="#000000" id="clrCont"">
+            <label for="clrRemp">Remplir:</label>
+            <input name="clrRemp" type="color" value="#000000" id="clrRemp">
+        </div>
+
+        <div class="toolbar" id="barreRemplissage">
+            <input class="hidden" type="button" onclick="changer_mode(4)" value="Remplir"/>
+            <input class="hidden" type="button" onclick="changer_mode(5)" value="Vider"/>
+        </div>
+
+        <div class="toolbar" id="barreSelection">
+            <input type="button" onclick="changer_mode(6)" value="Sélection" id="boutonSelectionner"/>
+            <select name="liste_entites" id="listeEntites"></select>
+            <input class="hidden" type="button" onclick="changer_mode(7)" value="Supprimer" id="boutonSupprimer"/>
+        </div>
+
+        <div class="toolbar" id="coordCellSurv">-;-</div>
+        <div class="toolbar" id="cellSurv">-</div>
+        <div class="toolbar " id="infosCell">
+            <div id="typeEntite">-</div>
+            <div id="idEntite">-</div>
+            <div id="numSegment">-</div>
+            <div id="etatUdcie">-</div>
+        </div>
+    </header>
+    <main>
+        <canvas id="canvas"></canvas>
+    </main>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

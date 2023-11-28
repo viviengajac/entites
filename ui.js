@@ -1,0 +1,94 @@
+import { grille } from "./main.js";
+
+export class UI {
+    constructor() {
+        this.barres_modes = [],
+        this.boutons_modes = [],
+        this.mode_actif = 0,    // 0=point; 1=ligne; 2=polyligne; 3=polygone; 4=remplir; 5=vider; 6=sélection
+        this.listeEntites = document.getElementById("listeEntites"),
+        this.coord_cellule_survolee = document.getElementById("coordCellSurv"),
+        this.id_cellule_survolee = document.getElementById("cellSurv"),
+        this.typeEntite = document.getElementById("typeEntite"),
+        this.idEntite = document.getElementById("idEntite"),
+        this.numSegment = document.getElementById("numSegment"),
+        this.etatUdcie = document.getElementById("etatUdcie")
+    }
+    initialiser() {
+        this.recuperer_barres_modes();
+        this.recuperer_boutons();
+        this.recuperer_clr_cont();
+        this.recuperer_clr_remp();
+    }
+    recuperer_barres_modes() {
+        this.barres_modes.push(document.getElementById("barreEntites"));
+        this.barres_modes.push(document.getElementById("barreRemplissage"));
+        this.barres_modes.push(document.getElementById("barreSelection"));
+    }
+    recuperer_boutons() {
+        this.barres_modes.forEach(barre => {
+            let noeuds = barre.childNodes;
+            noeuds.forEach(noeud => {
+                if (noeud.nodeName == "INPUT") {
+                    this.boutons_modes.push(noeud);
+                }
+            });
+        });
+    }
+    modifier_clr_cont(clr) {
+        document.getElementById("clrCont").value = clr;
+        this.recuperer_clr_cont();
+    }
+    modifier_clr_remp(clr) {
+        document.getElementById("clrRemp").value = clr;
+        this.recuperer_clr_remp();
+    }
+    recuperer_clr_cont() {
+        this.clr_cont = document.getElementById("clrCont").value;
+    }
+    recuperer_clr_remp() {
+        this.clr_remp = document.getElementById("clrRemp").value;
+    }
+    changer_mode(val) {
+        if (val == 6) {
+            if (this.listeEntites.childElementCount == 0) return;
+            let param = this.recup_entite_dans_liste();
+            let type = param[0];
+            let id = param[1];
+            grille.selectionner_entite(type, id);
+        }
+        else grille.selection = null;
+        if (grille.temp_entite) {
+            if (grille.temp_entite.type == 3) {
+                grille.tracer_segment(grille.temp_entite.sommets[grille.temp_entite.sommets.length - 1], grille.temp_entite.sommets[0], false, grille.temp_entite, grille.temp_entite.sommets.length - 2);
+            }
+            grille.temp_entite = null;
+            grille.effacer_cellules_apercu();
+        }
+        this.maj_boutons_modes(val);
+        this.mode_actif = val;
+    }
+    maj_boutons_modes(val) {
+        this.boutons_modes.forEach(bouton => bouton.classList.remove("btn-actif"));
+        this.boutons_modes[val].classList.add("btn-actif");
+    }
+    recup_entite_dans_liste() {
+        let selection = listeEntites.options[listeEntites.selectedIndex].id;
+        let type;
+        switch (selection.substr(0, 2)) {
+            case "pt":
+                type = 0;
+            break;
+            case "li":
+                type = 1;
+            break;
+            case "pl":
+                type = 2;
+            break;
+            case "pg":
+                type = 3;
+            break;
+        }
+        let id = Number(selection.substr(2));
+        return [type, id];
+    }
+}
