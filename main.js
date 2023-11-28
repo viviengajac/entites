@@ -22,6 +22,7 @@ window.addEventListener("change", (e) => {
         break;
         case "clrRemp":
             ui.recuperer_clr_remp();
+            //console.log(grille.selection);
             if (grille.selection != null && grille.selection.type == 3) {
                 grille.remplir_polygone(grille.selection);
                 grille.selection.remplissage = ui.clr_remp;

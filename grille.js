@@ -112,9 +112,10 @@ export class Grille {
         ui.listeEntites.value = lib;
     }
     selectionner_entite(type, id) {
-        //console.log(type+ ";" + id)
+        //console.log(type+ ";" + id);
         let entite = this.entites[type][id];
         this.selection = entite;
+        console.log(this.selection);
         ui.modifier_clr_cont(entite.clr);
         if (entite.type == 3) {
             if (entite.remplissage == null) {

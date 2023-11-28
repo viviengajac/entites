@@ -49,6 +49,13 @@ export class UI {
         this.clr_remp = document.getElementById("clrRemp").value;
     }
     changer_mode(val) {
+        if (val == 4) {
+            //console.log(grille.selection);
+            if (grille.selection != null && grille.selection.type == 3) {
+                grille.selection.remplissage = this.clr_remp;
+                grille.remplir_polygone(grille.selection);
+            }
+        }
         if (val == 6) {
             if (this.listeEntites.childElementCount == 0) return;
             let param = this.recup_entite_dans_liste();
@@ -56,7 +63,7 @@ export class UI {
             let id = param[1];
             grille.selectionner_entite(type, id);
         }
-        else grille.selection = null;
+        else if (val != 4 && val != 6) grille.selection = null;
         if (grille.temp_entite) {
             if (grille.temp_entite.type == 3) {
                 grille.tracer_segment(grille.temp_entite.sommets[grille.temp_entite.sommets.length - 1], grille.temp_entite.sommets[0], false, grille.temp_entite, grille.temp_entite.sommets.length - 2);
@@ -64,8 +71,10 @@ export class UI {
             grille.temp_entite = null;
             grille.effacer_cellules_apercu();
         }
-        this.maj_boutons_modes(val);
-        this.mode_actif = val;
+        if (val != 4) {
+            this.maj_boutons_modes(val);
+            this.mode_actif = val;
+        }
     }
     maj_boutons_modes(val) {
         this.boutons_modes.forEach(bouton => bouton.classList.remove("btn-actif"));
