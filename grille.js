@@ -159,7 +159,7 @@ export class Grille {
             for (let y = y_min; y <= y_max; y++) {
                 let cellule = this.trouver_cellule(this.calc_indice_cellule(x * this.taille_cellules, y * this.taille_cellules));
                 cellule.udcie = "u";
-                cellule.type_entite = undefined;
+                //cellule.type_entite = undefined; // je ne sais pas à quoi servait cette ligne, elle génère un bug
             }
         }
         this.dessiner_polygone(entite);
